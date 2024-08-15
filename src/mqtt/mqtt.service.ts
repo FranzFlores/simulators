@@ -33,6 +33,11 @@ export class MqttService implements OnModuleInit, OnModuleDestroy {
     this.client.on('connect', () => {
       console.log('cliente MQQT conectado');
     });
+
+    this.client.on('error', (error) => {
+      console.log(error);
+      this.client.end();
+    });
   }
 
   private async sendMessage(topic: string, message: string) {
