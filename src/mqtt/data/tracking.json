@@ -1,0 +1,41 @@
+[
+    {
+        "idCompany": 2,
+        "idVehicle": 34,
+        "date": "Thu Aug 15 14:57:42 GMT+00:00 2024",
+        "latitude": -4.0114137,
+        "longitude": -79.2047546,
+        "speed": 12.50,
+        "course": 20.0,
+        "gps": 1,
+        "gsm": 1, 
+        "bat_per": 70,
+        "bat_has": 1
+    },
+    {
+        "idCompany": 2,
+        "idVehicle": 34,
+        "date": "Thu Aug 15 14:58:00 GMT+00:00 2024",
+        "latitude": -4.011954, 
+        "longitude": -79.204598,
+        "speed": 10,
+        "course": 23.0,
+        "gps": 1,
+        "gsm": 1, 
+        "bat_per": 70,
+        "bat_has": 1
+    },
+    {
+        "idCompany": 2,
+        "idVehicle": 34,
+        "date": "Thu Aug 15 14:58:30 GMT+00:00 2024",
+        "latitude": -4.012400,
+        "longitude": -79.204537,
+        "speed": 8,
+        "course": 25.0,
+        "gps": 1,
+        "gsm": 1, 
+        "bat_per": 69,
+        "bat_has": 1
+    }
+]
