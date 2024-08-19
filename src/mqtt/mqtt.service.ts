@@ -8,6 +8,7 @@ import * as trackings from './data/tracking.json'
 export class MqttService implements OnModuleInit, OnModuleDestroy {
   private client: mqtt.MqttClient;
   private mqttUrl: string;
+  private topic = 'vehicles/34';
 
   constructor(
     private readonly configService: ConfigService,
@@ -19,8 +20,8 @@ export class MqttService implements OnModuleInit, OnModuleDestroy {
     this.connectToMQTTServer();
     for (const tracking of trackings) {
       const result = Object.values(tracking).join(',');
-      this.sendMessage('plot', result);
-    }   
+    this.sendMessage(`/vehicle/${tracking.idVehicle}`, result);
+    }
   }
 
   onModuleDestroy() {
@@ -32,6 +33,16 @@ export class MqttService implements OnModuleInit, OnModuleDestroy {
 
     this.client.on('connect', () => {
       console.log('cliente MQQT conectado');
+
+      this.client.subscribe(this.topic, (err) => {
+        if (err) {
+          console.error('Failed to subscribe:', err);
+        }
+
+        console.log(`Subscribed to topic: ${this.topic}`);
+      });
+
+      this.receiveMessage();
     });
 
     this.client.on('error', (error) => {
@@ -47,6 +58,17 @@ export class MqttService implements OnModuleInit, OnModuleDestroy {
       console.log('Mensaje enviado correctamente');
     } catch (error) {
       console.log('Error al enviar mensaje');
+      console.log(error);
+    }
+  }
+
+  private async receiveMessage() {
+    try {
+      this.client.on('message', (topic: string, message: Buffer) => {
+        console.log(`Received message: ${message.toString()} from topic: ${topic}`);
+      });
+    } catch (error) {
+      console.log('Error al recibir datos');
       console.log(error);
     }
   }
